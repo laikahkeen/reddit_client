@@ -7,38 +7,26 @@ import ROUTES from './app/routes';
 import './App.css';
 
 export default function App() {
+	const routes = [
+		{ route: ROUTES.index(), label: 'Index' },
+		{ route: ROUTES.header(), label: 'Header' },
+		{ route: ROUTES.counter(), label: 'Counter' },
+		{ route: ROUTES.footer(), label: 'Footer' },
+	];
+
 	return (
 		<BrowserRouter>
 			<nav>
 				<ul>
-					<li>
-						<NavLink
-							to={ROUTES.index()}
-							className={(navData) => (navData.isActive ? 'active' : '')}>
-							Index
-						</NavLink>
-					</li>
-					<li>
-						<NavLink
-							to={ROUTES.header()}
-							className={(navData) => (navData.isActive ? 'active' : '')}>
-							Header
-						</NavLink>
-					</li>
-					<li>
-						<NavLink
-							to={ROUTES.counter()}
-							className={(navData) => (navData.isActive ? 'active' : '')}>
-							Counter
-						</NavLink>
-					</li>
-					<li>
-						<NavLink
-							to={ROUTES.footer()}
-							className={(navData) => (navData.isActive ? 'active' : '')}>
-							Footer
-						</NavLink>
-					</li>
+					{routes.map((route, index) => (
+						<li key={index}>
+							<NavLink
+								to={route.route}
+								activeClassName='active'>
+								{route.label}
+							</NavLink>
+						</li>
+					))}
 				</ul>
 			</nav>
 			<Routes>
